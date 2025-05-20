@@ -12,7 +12,8 @@
 
 ## Вариативная часть задания
 
-Формулировка задания вариативной части и выбранная тематика (если есть). Приведите также дополнительные ссылки на источники задания (если есть).
+Python: How to Build Your First Slack Bot with Python (Python: Как создать своего первого бота Slack на Python).
+https://www.freecodecamp.org/news/how-to-create-a-telegram-bot-using-python/
 
 ## Ответственный по проектной (учебной) практике
 
