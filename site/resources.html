@@ -1,0 +1,80 @@
+        <section id="resources-page" class="page">
+            <div class="container">
+                <h2>Полезные ресурсы</h2>
+                <div class="resources">
+		    <div class="resource-card">
+                        <h3>МосПолитех</h3>
+                        <p>Московский политехнический университет</p>
+                        <a href="https://mospolytech.ru/">Перейти →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>ФГОС ВО</h3>
+                        <p>Федеральные государственные образовательные стандарты высшего образования</p>
+                        <a href="https://fgos.ru" target="_blank">Перейти →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>ИИ в образовании</h3>
+                        <p>Лучшие практики применения искусственного интеллекта в обучении</p>
+                        <a href="https://eduai-research.org" target="_blank">Перейти →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <h3>Цифровой ассистент преподавателя</h3>
+            <p>Инновационное решение для современного образования</p>
+            <div class="footer-links">
+                <a href="#" class="footer-nav" data-page="home">Главная</a>
+                <a href="#" class="footer-nav" data-page="about">О проекте</a>
+                <a href="#" class="footer-nav" data-page="team">Команда</a>
+                <a href="#" class="footer-nav" data-page="journal">Ход работы</a>
+                <a href="#" class="footer-nav" data-page="resources">Ресурсы</a>
+            </div>
+            <p>© 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Навигация между страницами
+        function navigateToPage(pageId) {
+            // Удаляем активный класс у всех ссылок
+            document.querySelectorAll('.nav-link, .footer-nav').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Добавляем активный класс текущей ссылке
+            document.querySelectorAll(`[data-page="${pageId}"]`).forEach(link => {
+                link.classList.add('active');
+            });
+            
+            // Скрываем все страницы
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Показываем выбранную страницу
+            document.getElementById(`${pageId}-page`).classList.add('active');
+            
+            // Прокрутка вверх
+            window.scrollTo(0, 0);
+        }
+
+        // Обработчики событий для навигации
+        document.querySelectorAll('.nav-link, .footer-nav').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                navigateToPage(pageId);
+            });
+        });
+
+        // Инициализация - показываем главную страницу
+        document.addEventListener('DOMContentLoaded', () => {
+            navigateToPage('home');
+        });
+    </script>
+</body>
+</html>
