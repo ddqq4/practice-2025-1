@@ -1,0 +1,149 @@
+````markdown
+# Создание Telegram-бота на Python: Полное руководство
+## 1. Введение
+**Цель проекта**: Создать функционального Telegram-бота для автоматизации учебных процессов с возможностью расширения функционала.
+
+**Технологический стек**:
+- Python 3.10+
+- python-telegram-bot 20.0+
+- Docker (для деплоя)
+- PostgreSQL (для хранения данных)
+
+## 2. Исследование предметной области
+
+### 2.1 Анализ существующих решений
+```mermaid
+pie
+    title Распределение функций в образовательных ботах
+    "Проверка заданий" : 35
+    "Напоминания" : 25
+    "Материалы" : 20
+    "Другое" : 5
+```
+
+### 2.2 Архитектура решения
+```mermaid
+graph TD
+    A[Пользователь] --> B[Telegram]
+    B --> C[Наш бот]
+    C --> D[Вебхуки]
+    D --> E[Сервер]
+    E --> F[База данных]
+```
+
+## 3. Пошаговое руководство
+
+### 3.1 Настройка окружения
+1. Создайте бота через [@BotFather](https://t.me/BotFather)
+2. Получите API-токен
+3. Установите зависимости:
+```bash
+pip install python-telegram-bot psycopg2-binary
+```
+
+### 3.2 Базовый код бота
+```python
+from telegram import Update
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
+
+async def start(update: Update, context):
+    await update.message.reply_text('Привет! Я бот-ассистент')
+
+def main():
+    app = Application.builder().token("ВАШ_ТОКЕН").build()
+    app.add_handler(CommandHandler("start", start))
+    app.run_polling()
+
+if __name__ == "__main__":
+    main()
+```
+
+## 4. Ключевые функции
+
+### 4.1 Система напоминаний
+```python
+from datetime import datetime, timedelta
+
+async def set_reminder(update: Update, context):
+    # Парсинг времени из сообщения
+    remind_time = datetime.now() + timedelta(hours=1)
+    context.job_queue.run_once(remind, remind_time, chat_id=update.message.chat_id)
+```
+
+### 4.2 Хранение данных
+```mermaid
+erDiagram
+    USERS ||--o{ REMINDERS : has
+    USERS {
+        int user_id PK
+        string username
+    }
+    REMINDERS {
+        int id PK
+        string text
+        datetime time
+    }
+```
+
+## 5. Модификации проекта
+
+### 5.1 Добавленные функции
+1. Система проверки заданий
+2. Генератор отчетов в PDF
+
+```python
+# Пример новой функции
+async def generate_report(update: Update, context):
+    user_data = get_user_data(update.effective_user.id)
+    pdf = create_pdf_report(user_data)
+    await context.bot.send_document(chat_id=update.effective_chat.id, document=pdf)
+```
+
+## 6. Развертывание
+
+### 6.1 Docker-контейнеризация
+```dockerfile
+FROM python:3.10
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "bot.py"]
+```
+
+### 6.2 CI/CD Pipeline
+```mermaid
+graph LR
+    A[Git Push] --> B[Тесты]
+    B --> C[Сборка Docker]
+    C --> D[Деплой на сервер]
+```
+
+## HTML-версия для сайта
+
+Для HTML-версии добавьте в репозиторий файл `docs/index.html` с таким содержанием:
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Telegram Bot Gu</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <article class="markdown-body">
+        <!-- Содержимое аналогичное README.md -->
+        <!-- Можно конвертировать через pandoc: -->
+        <!-- pandoc README.md -f markdown -t html -o docs/index.html -->
+    </article>
+</body>
+</html>
+```
+
+**Организация репозитория**:
+```
+├── docs/              # Документация
+│   ├── index.html     # HTML-версия
+└── README.md          # Базовый файл
+```
