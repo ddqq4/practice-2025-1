@@ -49,7 +49,7 @@ async def start(update: Update, context):
     await update.message.reply_text('Привет! Я бот-ассистент')
 
 def main():
-    app = Application.builder().token("8099192016:AAGP57xR1v4PujdKwPixrzpbrVdssPymcxw").build()
+    app = Application.builder().token("токен(гитхаб не разрешает опубликовывать)").build()
     app.add_handler(CommandHandler("start", start))
     app.run_polling()
 
