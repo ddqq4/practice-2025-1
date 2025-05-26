@@ -7,13 +7,17 @@
 
 ```
 digital-teacher-assistant/
-├── index.html          # Главная страница
-├── about.html          # О проекте
-├── team.html           # Участники
-├── journal.html        # Журнал прогресса
-├── resources.html      # Ресурсы
-└── images/             # Графические материалы
-    └── e-learning.png  # Основное изображение
+├── index.html
+├── about.html
+├── team.html
+├── journal.html
+├── resources.html
+├── style/
+│   └── style.css
+├── js/
+│   └── script.js
+└── images/
+    └── Chat_Bot_0117.webp
 ```
 
 ## 3. Технические особенности
