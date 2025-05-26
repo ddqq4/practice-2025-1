@@ -50,7 +50,7 @@ async def start(update: Update, context):
     await update.message.reply_text('Привет! Я бот-ассистент')
 
 def main():
-    app = Application.builder().token("ВАШ_ТОКЕН").build()
+    app = Application.builder().token("8099192016:AAGP57xR1v4PujdKwPixrzpbrVdssPymcxw").build()
     app.add_handler(CommandHandler("start", start))
     app.run_polling()
 
@@ -117,28 +117,6 @@ graph LR
     A[Git Push] --> B[Тесты]
     B --> C[Сборка Docker]
     C --> D[Деплой на сервер]
-```
-
-## HTML-версия для сайта
-
-Для HTML-версии добавьте в репозиторий файл `docs/index.html` с таким содержанием:
-
-```html
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Telegram Bot Gu</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-    <article class="markdown-body">
-        <!-- Содержимое аналогичное README.md -->
-        <!-- Можно конвертировать через pandoc: -->
-        <!-- pandoc README.md -f markdown -t html -o docs/index.html -->
-    </article>
-</body>
-</html>
 ```
 
 **Организация репозитория**:
